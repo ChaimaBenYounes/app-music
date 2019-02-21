@@ -3,19 +3,29 @@ import { Component, OnInit } from '@angular/core';
 import { Album } from '../album'; 
 import { ALBUMS } from '../mock-albums';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+
   titlePage: string = "Page principale Albums Music";
   albums : Album[] =  ALBUMS;
+  selectedAlbum : Album;
+  status: string = null; // pour gérer l'affichage des caractères [play]
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelect(album: Album) {
+    this.selectedAlbum = album;
+  }
+
+  playParent($event){
+    this.status = $event.id; // identifiant unique
+    console.log($event)
   }
 
 }

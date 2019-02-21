@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { MinuteSecondsPipe } from './minute-seconds-pipe';
+import { AlbumDetailsComponent } from './album-details/album-details.component';
 
 const routeshome: Routes = [{ path:'', component : HomeComponent}] 
 //const routesAlbums: Routes = [{ path:'', component : AlbumsComponent}] 
@@ -16,7 +17,8 @@ const routeshome: Routes = [{ path:'', component : HomeComponent}]
     AppComponent,
     HomeComponent,
     AlbumsComponent,
-    MinuteSecondsPipe
+    MinuteSecondsPipe,
+    AlbumDetailsComponent
   ],
   imports: [
     BrowserModule,
