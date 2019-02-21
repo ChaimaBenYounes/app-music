@@ -6,7 +6,11 @@
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <a  style="margin-left: 0px;  padding: 0px 0px 30px 50px;" href="#"><img width="10%" src="./assets/svg/default_image.png" alt="">
+                
+            </a>
           <ul class="navbar-nav mr-auto">
+             
               <li class="nav-item active">
                   <a class="nav-link" href="#">Home
                       <span class="sr-only">(current)</span>
@@ -26,8 +30,11 @@
   </nav>
   <div class="row content">
       <div class="col-sm-4 video">
+        <!--
+            <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
+        -->
           <div class="card">
-              <img class="card-img-top" src="./assets/images/default_image.png" alt="Group Music">
+              <img class="card-img-center"  src="./assets/svg/default_image.png" alt="Group Music">
               <div class="card-body">
                   <h5 class="card-title">Dark</h5>
                   <p class="card-text">Punk electro</p>
@@ -41,6 +48,7 @@
                   <li class="list-group-item">Vestibulum at eros</li>
               </ul>
           </div>
+      
       </div><!-- .video -->
       <div class="col-sm-8 music">
           <nav aria-label="Page navigation example">
@@ -62,38 +70,38 @@
                   </li>
               </ul>
           </nav><!-- .pagination -->
+          <h1> {{ titlePage }} </h1>
           <button type="button" class="btn btn-lg btn-danger">You are in an anonymous mode.</button>
-          <div class="card">
+         
+          <div class="card" *ngFor="let album of albums; let i = index" >
               <div class="card-header">
-                  Punk electro
+                    <!-- permet d'afficher l'index  -->
+                    {{ i + 1 }} {{ album.ref }} <span *ngIf="status==album.id">[play]</span>
+                   
               </div>
               <div class="card-body">
-                  <h5 class="card-title">Dark</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <h5 class="card-title">{{ album.title }}</h5>
+                  <p class="card-text">{{ album.description }} </p>
                   <a class="btn btn-outline-primary" href="#" role="button">fr</a>
-                  <a class="btn btn-outline-dark" href="#" role="button">guitar</a>
-
-                  <img class="glyph-icon" src="./assets/svg/si-glyph-heart.svg" />
-                  <small>7</small>
-                  <img class="glyph-icon" src="./assets/svg/si-glyph-timer.svg" />
-                  <small>60 min</small>
-              </div>
-          </div><!-- .card -->
-          <div class="card">
-              <div class="card-header">
-                  Pop
-              </div>
-              <div class="card-body">
-                  <h5 class="card-title">Sun</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a class="btn btn-outline-dark" href="#" role="button">en</a>
-
-                  <img class="glyph-icon" src="./assets/svg/si-glyph-heart.svg" />
-                  <small>3</small>
-                  <img class="glyph-icon" src="./assets/svg/si-glyph-timer.svg" />
-                  <small>120 min</small>
-              </div>
-          </div><!-- .card -->
+                  <a class="btn btn-outline-dark" href="#" role="button">guitar</a> 
+                  <ul *ngIf="album.tags" class="list-inline">
+                   <span class="badge badge-info" *ngFor="let tag of album.tags ; let i = index" >
+                   {{ tag }} 
+                   </span>
+                  </ul>
+                  <ng-template [ngIf]="album.like">
+                    <img class="glyph-icon" src="./assets/svg/si-glyph-heart.svg" />
+                    <small>{{ album.like }}</small>
+                  </ng-template>
+                  <ng-template [ngIf]="album.duration">
+                    <img class="glyph-icon" src="./assets/svg/si-glyph-timer.svg" />
+                    <small>{{ album.duration|minuteSeconds }} min </small>
+                 </ng-template>
+                 <button (click)="onSelect(album)" class="btn btn-dark">Details</button>
+                </div>
+          </div>
+          <!-- .card -->
+         
           <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                   <li class="page-item disabled">

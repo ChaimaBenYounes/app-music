@@ -5,19 +5,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { MinuteSecondsPipe } from './minute-seconds-pipe';
 
-const routes: Routes = [{ path:'', component : HomeComponent}]  
+const routeshome: Routes = [{ path:'', component : HomeComponent}] 
+//const routesAlbums: Routes = [{ path:'', component : AlbumsComponent}] 
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AlbumsComponent,
+    MinuteSecondsPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     RouterModule.forRoot(
-      routes
-    )
+      routeshome, 
+  )
   ],
   providers: [],
   bootstrap: [AppComponent]
