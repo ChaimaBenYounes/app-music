@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AlbumsComponent } from './albums/albums.component';
-import { MinuteSecondsPipe } from './minute-seconds-pipe';
+import { MinuteSecondsPipe } from './pipe/minute-seconds-pipe';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 
 
