@@ -19,7 +19,11 @@ export class AlbumService {
   //elle retournera tous les albums sort by duration.
   getAlbums(){
     if(this.albums){
-      return this.albums.sort(sortBy('duration'));
+      return this.albums.sort(sortBy('-duration')); // avec sort-by-typescript
+      /* ou avec mapping
+      return this.albums.sort((a, b) => 
+      (b.duration - a.duration ));
+      */
     } 
       return null;
   }
