@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
 
   playParent($event){
     this.status = $event.id; // identifiant unique
-    console.log($event)
   }
 
 }

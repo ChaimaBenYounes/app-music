@@ -2,23 +2,6 @@
       <div class="col-sm-4 video">
      
             <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
-       
-          
-          <div class="card">
-              <img class="card-img-center"  src="./assets/svg/default_image.png" alt="Group Music">
-              <div class="card-body">
-                  <h5 class="card-title">Dark</h5>
-                  <p class="card-text">Punk electro</p>
-                  <a href="#" class="btn btn-primary">Play >> </a>
-              </div>
-              <ul class="list-group">
-                  <li class="list-group-item active">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-          </div>
       
     </div> <!-- .video -->
       <div class="col-sm-8 music">
@@ -47,7 +30,7 @@
           <div class="card" *ngFor="let album of albums; let i = index" >
               <div class="card-header">
                     <!-- permet d'afficher l'index  -->
-                    {{ i + 1 }} {{ album.ref }} <span *ngIf="status==album.id">[play]</span>
+                    {{ i + 1 }} {{ album.ref }} <span *ngIf="status==album.id"><img class="glyph-icon-play" src="./assets/svg/Play.png" /></span>
                    
               </div>
               <div class="card-body">
