@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Album, List } from '../album';
-import { ALBUMS} from '../mock-albums';
-import { ALBUM_LISTS } from '../mock-albums';
+import { ALBUMS, ALBUM_LISTS} from '../mock-albums';
+import { AlbumService } from '../service/album.service';
 
 @Component({
   selector: 'app-album-details',
@@ -17,19 +17,15 @@ export class AlbumDetailsComponent implements OnInit {
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
   songs : List;
 
-
-  constructor() { }
+  constructor(private ablumService: AlbumService) { }
 
   ngOnInit() {
-    console.log(this.album); // contrôler que les données rentrent bien ici  
+    
   }
 
   ngOnChanges(changes: {Album : SimpleChanges}){
-
     if (this.album) {
-    
-      this.songs = this.albumLists.find(elem => elem.id === this.album.id);
-      
+      this.songs = this.ablumService.getAlbumList(this.album.id);
     }
   }
 

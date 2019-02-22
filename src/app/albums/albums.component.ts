@@ -11,8 +11,8 @@ import { ALBUMS } from '../mock-albums';
 
 export class AlbumsComponent implements OnInit {
 
-  albums : Album[] =  ALBUMS;
-  status: string = null;// pour gérer l'affichage des caractères [play] 
+  //albums : Album[] =  ALBUMS;
+  //status: string = null;// pour gérer l'affichage des caractères [play] 
 
   constructor() { 
 
