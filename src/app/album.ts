@@ -1,13 +1,18 @@
+
 export class Album {
+    id: string;
+    ref: string;
+    name: string;
+    title: string;
+    description: string;
+    duration: number;
+    status : string;
+    url?: string;
+    like?: string;
+    tags?: Array<string>
+}
 
-    private id:string;
-    private ref:string;
-    private name:string;
-    private description:string;
-    private duration:number;
-    private status:string;
-    private url?:string;
-    private tags:[];
-    private like?:string;
-
+export class List {
+    id : string;
+    list: Array<string>;
 }

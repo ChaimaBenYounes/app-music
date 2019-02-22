@@ -9,6 +9,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { MinuteSecondsPipe } from './minute-seconds-pipe';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 
+
 const routeshome: Routes = [{ path:'', component : HomeComponent}] 
 //const routesAlbums: Routes = [{ path:'', component : AlbumsComponent}] 
 

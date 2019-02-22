@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Album } from '../album';
-import { ALBUMS } from '../mock-albums';
+import { Album, List } from '../album';
+import { ALBUMS} from '../mock-albums';
+import { ALBUM_LISTS } from '../mock-albums';
 
 @Component({
   selector: 'app-album-details',
@@ -9,9 +10,12 @@ import { ALBUMS } from '../mock-albums';
 })
 export class AlbumDetailsComponent implements OnInit {
 
-  @Input() album: Album;
+  // on récupére [album] <app-album-details [album]="selectedAlbum"></app-album-details>
+  @Input() album: Album; // propriété [album] liée dans album.component.html
   albums : Album[] =  ALBUMS;
- 
+  albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
+  songs : List;
+
   constructor() { }
 
   ngOnInit() {
@@ -20,24 +24,11 @@ export class AlbumDetailsComponent implements OnInit {
 
   ngOnChanges(changes: {Album : SimpleChanges}){
 
-    for (let propName in changes) {  
-      let change = changes[propName];
-      let curVal  = JSON.stringify(change.currentValue);
-      let prevVal = JSON.stringify(change.previousValue);
+    if (this.album) {
     
-            console.log(curVal);
-            console.log(prevVal);
-         }
-         
-    /*if (changes['album']) {
-      console.log(changes['album']);
-
-      /*let found = this.albums.find(function(element) {
-        return element > 10;
-      });
+      this.songs = this.albumLists.find(elem => elem.id === this.album.id);
       
-      console.log(found);*/
-  /*}*/
+    }
   }
 
 }
