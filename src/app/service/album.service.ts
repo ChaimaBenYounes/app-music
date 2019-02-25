@@ -13,11 +13,11 @@ export class AlbumService {
 
   constructor() { }
 
-  count(){
+  count():number{
     return this.albums.length;
   }
   //elle retournera tous les albums sort by duration.
-  getAlbums(){
+  getAlbums():Album[]{
     if(this.albums){
       return this.albums.sort(sortBy('-duration')); // avec sort-by-typescript
       /* ou avec mapping
@@ -29,7 +29,7 @@ export class AlbumService {
   }
 
   //elle retournera un album
-  getAlbum( id: string){
+  getAlbum( id: string): Album{
     if (this.albums.find(elem => elem.id === id)){
       return this.albums.find(elem => elem.id === id);
     }
@@ -37,12 +37,19 @@ export class AlbumService {
   }
 
   //elle retournera la liste d’un album
-  getAlbumList( id : string){
-
+  getAlbumList( id : string) : List{
     if(this.albumLists.find(elem => elem.id === id)){
       return this.albumLists.find(elem => elem.id === id);
     }
     return null;
+  }
+
+  //
+  paginate(start: number, end: number): Album[]{
+    // 
+    return this.albums.sort(
+    (a, b) => { return b.duration - a.duration }
+    ).slice(start, end);
   }
 
 }
