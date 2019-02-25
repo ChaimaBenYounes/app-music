@@ -20,9 +20,9 @@ export class AlbumsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.albums = this.ablumService.paginate(0,5);
+    //this.albums = this.ablumService.paginate(0,5);
     console.log(this.ablumService.count())
-    //this.albums = this.ablumService.getAlbums();
+    this.albums = this.ablumService.getAlbums();
   }
 
   onSelect(album: Album) {

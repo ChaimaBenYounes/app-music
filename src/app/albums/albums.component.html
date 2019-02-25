@@ -1,10 +1,14 @@
   <div class="row content">
+       
       <div class="col-sm-4 video">
      
             <app-album-details [album]="selectedAlbum" (onPlay)="playParent($event)"></app-album-details>
       
     </div> <!-- .video -->
       <div class="col-sm-8 music">
+
+            <app-search></app-search>
+
           <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                   <li class="page-item disabled">
@@ -24,6 +28,7 @@
                   </li>
               </ul>
           </nav><!-- .pagination -->
+         
           <h1> {{ titlePage }} </h1>
           <button type="button" class="btn btn-lg btn-danger">You are in an anonymous mode.</button>
          
