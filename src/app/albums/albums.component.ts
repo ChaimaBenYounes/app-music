@@ -15,7 +15,7 @@ export class AlbumsComponent implements OnInit {
   albums : Album[] =  ALBUMS;
   selectedAlbum : Album;
   status: string = null; // pour gérer l'affichage des caractères [play]
-  
+  //search : string = null; 
   constructor(private ablumService: AlbumService) {
   }
 
@@ -31,6 +31,10 @@ export class AlbumsComponent implements OnInit {
 
   playParent($event){
     this.status = $event.id; // identifiant unique
+  }
+
+  onSubParent($event){
+    this.albums = $event;
   }
 
 }

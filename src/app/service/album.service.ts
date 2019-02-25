@@ -46,10 +46,19 @@ export class AlbumService {
 
   //
   paginate(start: number, end: number): Album[]{
-    // 
+    
     return this.albums.sort(
     (a, b) => { return b.duration - a.duration }
     ).slice(start, end);
+  }
+
+  //search 
+  search(word : string ): Album[]{
+ 
+   let arrayAlbum = []; 
+   this.albums.forEach(album => { if (album.name.includes(word)) arrayAlbum.push(album) });
+   return arrayAlbum;
+
   }
 
 }

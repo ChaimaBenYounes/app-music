@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms'; // template-driven
+import { AlbumService } from '../service/album.service';
+import { Album } from '../album'; 
+import { ALBUMS } from '../mock-albums';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -7,13 +11,18 @@ import { NgForm } from '@angular/forms'; // template-driven
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  albums : Album[] =  ALBUMS;
+  @Output() onSub : EventEmitter<Album> = new EventEmitter();
+
+  constructor(private ablumService: AlbumService) { }
 
   ngOnInit() {
+
   }
 
   onSubmit(form: NgForm):void{
-    console.log(form.value['search']);
+
+    this.onSub.emit(this.ablumService.search(form.value['search']));
   }
 
 }

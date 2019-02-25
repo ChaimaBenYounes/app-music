@@ -7,8 +7,8 @@
     </div> <!-- .video -->
       <div class="col-sm-8 music">
 
-            <app-search></app-search>
-
+            <app-search (onSub)="onSubParent($event)"></app-search>
+           <!-- <span *ngIf="search">{{ search.name }}</span> -->
           <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                   <li class="page-item disabled">
@@ -35,7 +35,7 @@
           <div class="card" *ngFor="let album of albums; let i = index" >
               <div class="card-header">
                     <!-- permet d'afficher l'index  -->
-                    {{ i + 1 }} {{ album.ref }} <span *ngIf="status==album.id"><img class="glyph-icon-play" src="./assets/svg/Play.png" /></span>
+                    {{ i + 1 }} {{ album.name }} <span *ngIf="status==album.id"><img class="glyph-icon-play" src="./assets/svg/Play.png" /></span>
                    
               </div>
               <div class="card-body">
