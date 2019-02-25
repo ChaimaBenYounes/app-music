@@ -9,8 +9,15 @@ import { AlbumsComponent } from './albums/albums.component';
 import { MinuteSecondsPipe } from './pipe/minute-seconds-pipe';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { SearchComponent } from './search/search.component';
+import { LoginComponent } from './login/login.component';
+import { AlbumDescriptionComponent } from './album-description/album-description.component';
 
-const routeshome: Routes = [{ path:'', component : AlbumsComponent}] 
+const albumsRoutes: Routes = [
+  { path:'albums', component : AlbumsComponent},
+  { path:'', redirectTo: '/albums', pathMatch:'full'},
+  { path:'login', component : LoginComponent},
+  { path:'album/:id', component : AlbumDescriptionComponent},
+] 
 
 @NgModule({
   declarations: [
@@ -18,14 +25,16 @@ const routeshome: Routes = [{ path:'', component : AlbumsComponent}]
     AlbumsComponent,
     MinuteSecondsPipe,
     AlbumDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    AlbumDescriptionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     FormsModule,
     RouterModule.forRoot(
-      routeshome, 
+      albumsRoutes, 
   )
   ],
   providers: [],

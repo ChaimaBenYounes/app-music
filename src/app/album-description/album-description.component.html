@@ -1,0 +1,33 @@
+
+  <div class="card" >
+      <div class="card-header">
+            <!-- permet d'afficher l'index  -->
+  
+           
+      </div>
+      <div class="card-body">
+          <h5 class="card-title">
+              <a class="text-info" routerLink="/album/{{album.id}}">{{album.title}}</a>
+          </h5>
+          <p class="card-text">{{ album.description }} </p>
+          <a class="btn btn-outline-primary" href="#" role="button">fr</a>
+          <a class="btn btn-outline-dark" href="#" role="button">guitar</a> 
+          <ul *ngIf="album.tags" class="list-inline">
+           <span class="badge badge-info" *ngFor="let tag of album.tags ; let i = index" >
+           {{ tag }} 
+           </span>
+          </ul>
+          <ng-template [ngIf]="album.like">
+            <img class="glyph-icon" src="./assets/svg/si-glyph-heart.svg" />
+            <small>{{ album.like }}</small>
+          </ng-template>
+          <ng-template [ngIf]="album.duration">
+            <img class="glyph-icon" src="./assets/svg/si-glyph-timer.svg" />
+            <small>{{ album.duration|minuteSeconds }} min </small>
+         </ng-template> 
+         <div class="album-description">
+         <img *ngIf="album.url"  src="{{album.url}}{{album.name}}" alt="Group Music">
+        </div>
+        </div>
+  </div>
+

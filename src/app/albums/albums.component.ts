@@ -33,8 +33,8 @@ export class AlbumsComponent implements OnInit {
     this.status = $event.id; // identifiant unique
   }
 
-  onSubParent($event){
-    this.albums = $event;
+  searchByNameParent($event){
+    if ($event) this.albums = $event;
   }
 
 }

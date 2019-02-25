@@ -12,7 +12,7 @@ import { ALBUMS } from '../mock-albums';
 export class SearchComponent implements OnInit {
 
   albums : Album[] =  ALBUMS;
-  @Output() onSub : EventEmitter<Album> = new EventEmitter();
+  @Output() searchByName : EventEmitter<Album[]> = new EventEmitter();// émission des données vers le parent
 
   constructor(private ablumService: AlbumService) { }
 
@@ -22,7 +22,10 @@ export class SearchComponent implements OnInit {
 
   onSubmit(form: NgForm):void{
 
-    this.onSub.emit(this.ablumService.search(form.value['search']));
+    const searchBy = this.ablumService.search(form.value['search']);
+    if(searchBy){
+      this.searchByName.emit(searchBy);
+    }
   }
 
 }
