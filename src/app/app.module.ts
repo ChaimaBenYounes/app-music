@@ -11,11 +11,13 @@ import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
+import { RegisterComponent } from './register/register.component';
 
 const albumsRoutes: Routes = [
   { path:'albums', component : AlbumsComponent},
   { path:'', redirectTo: '/albums', pathMatch:'full'},
   { path:'login', component : LoginComponent},
+  { path:'register', component : RegisterComponent},
   { path:'album/:id', component : AlbumDescriptionComponent},
 ] 
 
@@ -27,7 +29,8 @@ const albumsRoutes: Routes = [
     AlbumDetailsComponent,
     SearchComponent,
     LoginComponent,
-    AlbumDescriptionComponent
+    AlbumDescriptionComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

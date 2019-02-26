@@ -1,0 +1,47 @@
+
+<div class="card">
+  <article class="card-body">
+  <a routerLink="/login" class="float-right btn btn-outline-primary">Me Connecter</a>
+  <h4 class="card-title mb-4 mt-1">Enregistrez-vous </h4>
+     <form>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked> M.
+        </label>
+          <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Mr.
+          </label>
+      </div> <!-- btn-group btn-group-toggle// -->
+      <div class="form-group">
+          <label>Nom</label>
+          <input name="nom" class="form-control" placeholder="" type="email">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+          <label>Prénom</label>
+          <input name="prenom" class="form-control" placeholder="" type="email">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <label>Adresse e-mail</label>
+          <input name="email" class="form-control" placeholder="you@example.com" type="email">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+          <label>Confirmer votre adresse e-mail</label>
+            <input name="email" class="form-control" placeholder="you@example.com" type="email">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <label>Your password</label>
+          <input name="pwd1" class="form-control" placeholder="******" type="password">
+      </div> <!-- form-group// --> 
+      <div class="form-group">
+          <label>confirmer votre mot de passe</label>
+            <input name="pwd1" class="form-control" placeholder="******" type="password">
+      </div> <!-- form-group// -->   
+      <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block"> Créer Mon Compte </button>
+      </div> <!-- form-group// -->                                                           
+  </form>
+  </article>
+  </div>
+  <script>
+  $().button('toggle')
+  </script>
