@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule, 
     FormsModule,
+    BrowserAnimationsModule,
     RouterModule,
   ],
   providers: [],

@@ -3,8 +3,9 @@
 <article class="card-body">
 <a routerLink="/register" class="float-right btn btn-outline-primary">Créez votre compte</a>
 <h4 class="card-title mb-4 mt-1">Connectez-Vous </h4>
-	 <form>
-    <div class="form-group">
+	 <form (ngSubmit)="onSubmit(formLogin)" #formLogin="ngForm" >
+        <div class="alert alert-danger" role="alert" *ngIf="messageError">{{ messageError }}</div>   
+        <div class="form-group">
     	<label>Email</label>
         <input name="" class="form-control" placeholder="you@example.com*" type="email">
     </div> <!-- form-group// -->
@@ -19,7 +20,7 @@
     </div> <!-- checkbox .// -->
     </div> <!-- form-group// -->  
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Me Connecter </button>
+        <button [disabled]="formLogin.invalid" type="submit" class="btn btn-primary btn-block"> Me Connecter </button>
     </div> <!-- form-group// -->                                                           
 </form>
 </article>
