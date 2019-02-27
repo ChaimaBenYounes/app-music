@@ -14,15 +14,15 @@ export class AlbumsComponent implements OnInit {
   titlePage: string = "Page principale Albums Music";
   albums : Album[] =  ALBUMS;
   selectedAlbum : Album;
-  status: string = null; // pour gérer l'affichage des caractères [play]
-  //search : string = null; 
+  status: string = null; // pour gérer l'affichage des caractères [play] 
+  
   constructor(private ablumService: AlbumService) {
   }
 
   ngOnInit() {
-    //this.albums = this.ablumService.paginate(0,5);
+    this.albums = this.ablumService.paginate(0,this.ablumService.paginateNumberPage());
     console.log(this.ablumService.count())
-    this.albums = this.ablumService.getAlbums();
+
   }
 
   onSelect(album: Album) {
@@ -35,6 +35,11 @@ export class AlbumsComponent implements OnInit {
 
   searchByNameParent($event){
     if ($event) this.albums = $event;
+  }
+  paginate($event){
+    
+    this.albums = this.ablumService.paginate($event.start,$event.end);
+
   }
 
 }

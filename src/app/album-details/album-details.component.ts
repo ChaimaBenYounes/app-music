@@ -23,7 +23,7 @@ import {
         height: '50%',
         opacity: 0.25,
         backgroundColor: 'black',
-        transform: 'scale(0.6)',
+        transform: 'scale(0.1)',
       })),
       // définir l'état active de l'élément HTML
       state('inactive', style({
@@ -32,8 +32,8 @@ import {
         backgroundColor: '#f8f9fa',
         transform: 'scale(1)',
       })),
-      transition('inactive => active', animate('2s ease-in')),
-      transition('active => inactive', animate('0.5s ease-out')),
+      transition('inactive => active', animate('0.3s ease-in')),
+      transition('active => inactive', animate('0.3s 0.3s ease-out')),
     ]),
   ]
 
@@ -59,8 +59,8 @@ export class AlbumDetailsComponent implements OnInit {
     
     if (this.album) {
       this.songs = this.ablumService.getAlbumList(this.album.id);
+      
       this.stateGrow = false;
-
       const annimate = setTimeout(() => {
         this.stateGrow = !this.stateGrow, 
         clearInterval(annimate)

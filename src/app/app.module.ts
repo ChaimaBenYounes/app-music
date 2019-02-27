@@ -13,6 +13,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { RegisterComponent } from './register/register.component';
+import { PaginateComponent } from './paginate/paginate.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RegisterComponent } from './register/register.component';
     SearchComponent,
     LoginComponent,
     AlbumDescriptionComponent,
-    RegisterComponent
+    RegisterComponent,
+    PaginateComponent
   ],
   imports: [
     BrowserModule,

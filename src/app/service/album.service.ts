@@ -10,7 +10,8 @@ export class AlbumService {
 
   albums : Album[] =  ALBUMS;
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
-
+ 
+  
   constructor() { }
 
   count():number{
@@ -44,12 +45,21 @@ export class AlbumService {
     return null;
   }
 
-  //
+  //pagination
+  /*currentPage(page: number) {
+    //return this.sendCurrentNumberPage.next(page);
+  }*/
+
   paginate(start: number, end: number): Album[]{
     
     return this.albums.sort(
     (a, b) => { return b.duration - a.duration }
     ).slice(start, end);
+  }
+  
+  paginateNumberPage():number{
+
+    return 3 ;
   }
 
   //search 
@@ -57,8 +67,7 @@ export class AlbumService {
  
    let arrayAlbum = []; 
    this.albums.forEach(album => { if (album.name.includes(word)) arrayAlbum.push(album) });
+   
    return arrayAlbum;
-
   }
-
 }

@@ -9,25 +9,7 @@
 
             <app-search (searchByName)="searchByNameParent($event)"></app-search>
 
-          <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">Previous</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                  </li>
-              </ul>
-          </nav><!-- .pagination -->
+            <app-paginate (setPaginate)='paginate($event)'></app-paginate>
          
           <h1> {{ titlePage }} </h1>
           <button type="button" class="btn btn-lg btn-danger">You are in an anonymous mode.</button>
@@ -35,7 +17,7 @@
           <div class="card" *ngFor="let album of albums; let i = index" >
               <div class="card-header">
                     <!-- permet d'afficher l'index  -->
-                    {{ i + 1 }} {{ album.name }} <span *ngIf="status==album.id"><img class="glyph-icon-play" src="./assets/svg/Play.png" /></span>
+                     {{ album.name }} <span *ngIf="status==album.id"><img class="glyph-icon-play" src="./assets/svg/Play.png" /></span>
                    
               </div>
               <div class="card-body">
@@ -63,25 +45,7 @@
           </div>
           <!-- .card -->
          
-          <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">Previous</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                  </li>
-                  <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                  </li>
-              </ul>
-          </nav><!-- .pagination -->
+          <app-paginate (setPaginate)='paginate($event)'></app-paginate><!-- .pagination -->
       </div><!-- .music -->
 
   </div>
