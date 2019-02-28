@@ -4,7 +4,9 @@
     <div class="card-body">
       <h5 class="card-title">{{ album.title }}</h5>
       <p class="card-text">Name: {{ album.name }}</p>
-      <button (click)="play(album)" class="btn btn-primary">Play >></button>
+      
+      <button (click)="play(album)" class="btn btn-primary">Play>></button>
+      
     
     <ul class="list-group" *ngIf="songs">
       <h2>Playlist</h2>

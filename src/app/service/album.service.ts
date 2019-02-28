@@ -68,14 +68,18 @@ export class AlbumService {
    return arrayAlbum;
   }
 
-
   switchOn(album : Album) : void{
-    this.subjectAlbum.next(album);
+    this.albums.forEach(alb => {
+      if( alb.id === album.id) album.status = 'on';       
+    });
+    this.subjectAlbum.next(album); //next c'est equivalent à emit
   }
 
-  switchOf(album : Album): void{
-  
-    this.subjectAlbum.next(album);
+  switchOf(): void{
+    this.albums.forEach(alb => {
+      alb.status = 'off'    
+    });
+   
   }
 
 

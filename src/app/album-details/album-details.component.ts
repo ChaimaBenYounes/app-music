@@ -49,6 +49,7 @@ export class AlbumDetailsComponent implements OnInit {
   private stateGrow : boolean = false;
 
 
+
   constructor(private ablumService: AlbumService) { }
 
   ngOnInit() {
@@ -63,7 +64,7 @@ export class AlbumDetailsComponent implements OnInit {
       const annimate = setTimeout(() => {
         this.stateGrow = !this.stateGrow, 
         clearInterval(annimate)
-       }, 300);
+       }, 100);
 
     }
   }

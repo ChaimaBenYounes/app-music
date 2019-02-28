@@ -11,6 +11,10 @@ import { ALBUMS, ALBUM_LISTS  } from '../mock-albums';
 export class AudioPlayerComponent implements OnInit {
 
   showplayer : boolean = false;
+  total : number; 
+  ratio : number;
+  current : number = 1;
+
 
   constructor(private ablumService : AlbumService) {
   }
@@ -18,15 +22,12 @@ export class AudioPlayerComponent implements OnInit {
   ngOnInit() {
 
     this.ablumService.subjectAlbum.subscribe( album => {
-
-      if(album.status){
         this.showplayer = true;
-      } else {
-        this.showplayer = false;
-      }
-
+        
+        let duration = album.duration;
+        this.total = Math.floor(duration/120);
+        this.ratio = Math.floor(100/this.total);
     });
 
   }
-
 }
