@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// importez la définition de la classe et les albums
 import { Album } from '../album'; 
 import { ALBUMS } from '../mock-albums';
 import { AlbumService } from '../service/album.service';
-
 
 @Component({
   selector: 'app-albums',
@@ -17,8 +15,7 @@ export class AlbumsComponent implements OnInit {
   selectedAlbum : Album;
   status: string = null; // pour gérer l'affichage des caractères [play] 
   
-  constructor(private ablumService: AlbumService) {
-  }
+  constructor(private ablumService: AlbumService) {}
 
   ngOnInit() {
     this.albums = this.ablumService.paginate(0,this.ablumService.paginateNumberPage());

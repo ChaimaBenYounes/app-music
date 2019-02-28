@@ -13,6 +13,7 @@ export class AppComponent {
     this.compteurTimer();
   }
 
+  //
   compteurTimer():void{
     const count = interval(1000);
     const pipeTime = count.pipe(
@@ -22,7 +23,7 @@ export class AppComponent {
                                   return date  ;
                                 }),
 
-                                take(1*30), // stopper le flus aux bout de ( 1* 30 sec) exemple pour 12Heurs (12*3600 secondes)
+                                take(1*3600), // stopper le flus aux bout de ( 1* 30 sec) exemple pour 12Heurs (12*3600 secondes)
     );
     pipeTime.subscribe( x => this.time = x);
   }

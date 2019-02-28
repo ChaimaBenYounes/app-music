@@ -1,5 +1,4 @@
 <router-outlet>  
-   
        <div class="container-fuild principal">
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
                      <a class="navbar-brand" routerLink=""><img src="./assets/svg/default_image.png" alt="logo"></a>
@@ -16,9 +15,11 @@
                          </li>
 
                        </ul>
-                        secondes : {{ time| date : "mm:ss" }}
+                       <p>Vous êtes connecté depuis {{ time| date : "mm:ss" }}</p>
                      </div>
-              </nav> 
-              <app-audio-player></app-audio-player>        
+              </nav>         
+       </div>
+       <div class="container-fuild principal">
+          <app-audio-player></app-audio-player> 
        </div>
 </router-outlet>
