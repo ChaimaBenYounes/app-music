@@ -11,7 +11,6 @@ import { AlbumService } from '../service/album.service';
 export class AlbumDescriptionComponent implements OnInit {
 
   album : Album ;
-  
 
   constructor(
     private route: ActivatedRoute, // récupérez le service route
