@@ -4,8 +4,6 @@ import { ALBUMS, ALBUM_LISTS} from '../mock-albums';
 import { AlbumService } from '../service/album.service';
 import { trasAnimation } from '../animation';
 
-
-
 @Component({
   selector: 'app-album-details',
   templateUrl: './album-details.component.html',
@@ -23,12 +21,9 @@ export class AlbumDetailsComponent implements OnInit {
   songs : List;
   private stateGrow : boolean = false;
 
+  constructor(private ablumService: AlbumService) {}
 
-
-  constructor(private ablumService: AlbumService) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: {Album : SimpleChanges}){
     
