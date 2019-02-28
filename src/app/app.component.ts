@@ -9,7 +9,6 @@ import { map, take } from 'rxjs/operators';
 })
 export class AppComponent {
   time :any;
-
   constructor(){
     this.compteurTimer();
   }

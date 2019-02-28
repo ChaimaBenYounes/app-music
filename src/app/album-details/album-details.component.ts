@@ -52,7 +52,6 @@ export class AlbumDetailsComponent implements OnInit {
   constructor(private ablumService: AlbumService) { }
 
   ngOnInit() {
-    
   }
 
   ngOnChanges(changes: {Album : SimpleChanges}){

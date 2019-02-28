@@ -27,20 +27,19 @@ export class AlbumsComponent implements OnInit {
   }
 
   onSelect(album: Album) {
-    this.selectedAlbum = album;
+      this.selectedAlbum = album;
   }
 
   playParent($event){
     this.status = $event.id; // identifiant unique
+    this.ablumService.switchOn($event);
   }
 
   searchByNameParent($event){
     if ($event) this.albums = $event;
   }
   paginate($event){
-    
     this.albums = this.ablumService.paginate($event.start,$event.end);
-
   }
 
 }

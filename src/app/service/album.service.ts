@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Album, List } from '../album'; 
 import { ALBUMS, ALBUM_LISTS  } from '../mock-albums';
 import { sortBy } from 'sort-by-typescript';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root' // injecter de manière globale
@@ -10,7 +11,7 @@ export class AlbumService {
 
   albums : Album[] =  ALBUMS;
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
- 
+  subjectAlbum = new Subject<Album>();
   
   constructor() { }
 
@@ -46,10 +47,6 @@ export class AlbumService {
   }
 
   //pagination
-  /*currentPage(page: number) {
-    //return this.sendCurrentNumberPage.next(page);
-  }*/
-
   paginate(start: number, end: number): Album[]{
     
     return this.albums.sort(
@@ -70,4 +67,16 @@ export class AlbumService {
    
    return arrayAlbum;
   }
+
+
+  switchOn(album : Album) : void{
+    this.subjectAlbum.next(album);
+  }
+
+  switchOf(album : Album): void{
+  
+    this.subjectAlbum.next(album);
+  }
+
+
 }
