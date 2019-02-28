@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlbumService } from '../service/album.service';
-import { Album, List } from '../album'; 
-import { ALBUMS, ALBUM_LISTS  } from '../mock-albums';
 
 @Component({
   selector: 'app-audio-player',
@@ -15,9 +13,7 @@ export class AudioPlayerComponent implements OnInit {
   ratio : number;
   current : number = 1;
 
-
-  constructor(private ablumService : AlbumService) {
-  }
+  constructor(private ablumService : AlbumService) {}
 
   ngOnInit() {
 
