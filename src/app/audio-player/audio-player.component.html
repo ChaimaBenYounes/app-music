@@ -1,7 +1,7 @@
 <div *ngIf="showplayer" class="alert alert-primary" role="alert">
-  {{ album.name }}
+  {{ album.name }} / musique (en cours) :
   <div class="progress">
     <div class="progress-bar" role="progressbar" [style.width]="ratio + '%'" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
-  {{current }} / {{ total }}
+  {{current }} / {{ total }} - {{ showplayer }}
 </div>

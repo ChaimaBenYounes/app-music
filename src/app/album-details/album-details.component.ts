@@ -3,6 +3,7 @@ import { Album, List } from '../album';
 import { ALBUMS, ALBUM_LISTS} from '../mock-albums';
 import { AlbumService } from '../service/album.service';
 import { trasAnimation } from '../animation';
+import { PlayState } from '@angular/core/src/render3/interfaces/player';
 
 @Component({
   selector: 'app-album-details',
@@ -20,6 +21,7 @@ export class AlbumDetailsComponent implements OnInit {
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
   songs : List;
   private stateGrow : boolean = false;
+  valueButtonPlayStop : string = 'Play';
 
   constructor(private ablumService: AlbumService) {}
 
@@ -27,6 +29,8 @@ export class AlbumDetailsComponent implements OnInit {
 
   ngOnChanges(changes: {Album : SimpleChanges}){
     
+    this.valueButtonPlayStop = 'Play';
+
     if (this.album) {
       this.songs = this.ablumService.getAlbumList(this.album.id);
       
@@ -41,6 +45,15 @@ export class AlbumDetailsComponent implements OnInit {
 
   play(album: Album){
     this.onPlay.emit(album); // émettre un album vers le parent
+
+    if(this.valueButtonPlayStop === 'Play'){
+      this.valueButtonPlayStop = 'Stop';
+      this.ablumService.switchOn(album);
+    } 
+    else if (this.valueButtonPlayStop === 'Stop'){
+      this.valueButtonPlayStop = 'Play';
+      this.ablumService.switchOf(album);
+    }
   }
 
 }

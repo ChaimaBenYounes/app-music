@@ -12,6 +12,7 @@ export class AlbumService {
   albums : Album[] =  ALBUMS;
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
   subjectAlbum = new Subject<Album>();
+
   
   constructor() { }
 
@@ -75,11 +76,10 @@ export class AlbumService {
     this.subjectAlbum.next(album); //next c'est equivalent à emit
   }
 
-  switchOf(): void{
+  switchOf(album : Album): void{
     this.albums.forEach(alb => {
       alb.status = 'off'    
     });
-   
   }
 
 

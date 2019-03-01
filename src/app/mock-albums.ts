@@ -57,7 +57,7 @@ export const ALBUMS: Album[] = [
         "name": "Dickerson Maynard",
         "title": "consequat excepteur",
         "description": "Cillum proident commodo do non esse cillum incididunt officia qui occaecat. Excepteur id voluptate esse tempor aliqua voluptate in labore anim incididunt ea nostrud nisi. Proident adipisicing adipisicing enim adipisicing nisi elit irure.\r\n",
-        "duration": 840,
+        "duration": 60,
         "url": "http://placeimg.com/640/360/",
         "like": "Rather",
         "tags": [
@@ -221,7 +221,8 @@ export const ALBUM_LISTS : List[] = [
       "list": [
         "nulla",
         "velit",
-        "do"
+        "do",
+        "dodo"
       ]
     },
     {
