@@ -15,6 +15,7 @@ import { AlbumDescriptionComponent } from './album-description/album-description
 import { RegisterComponent } from './register/register.component';
 import { PaginateComponent } from './paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
     AlbumDescriptionComponent,
     RegisterComponent,
     PaginateComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

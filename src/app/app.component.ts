@@ -18,7 +18,7 @@ export class AppComponent {
     const count = interval(1000);
     const pipeTime = count.pipe(
                                  map( num => {
-                                  let date = new Date(0);
+                                  let date = new Date();
                                   date.setSeconds(num);
                                   return date  ;
                                 }),
