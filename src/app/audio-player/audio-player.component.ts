@@ -12,7 +12,7 @@ export class AudioPlayerComponent implements OnInit {
   total : number; 
   ratio : number;
   current : number = 1;
-
+  album : any;
   constructor(private ablumService : AlbumService) {}
 
   ngOnInit() {
@@ -23,6 +23,7 @@ export class AudioPlayerComponent implements OnInit {
         let duration = album.duration;
         this.total = Math.floor(duration/120);
         this.ratio = Math.floor(100/this.total);
+        this.album = album;
     });
 
   }
