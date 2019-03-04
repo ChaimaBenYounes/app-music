@@ -41,3 +41,22 @@ FormsModule,
 RouterModule.forRoot(albumsRoutes),
 HttpClientModule, // module HttpClient
 ],
+
+## Service HttpClient
+Il faut maintenant faire une injection de dépendance dans le service AlbumService :
+Imports
+// Service et classe utile
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// Opérateurs de RxJS
+import { map } from 'rxjs/operators';
+// libraire utile pour le traitement de données
+import * as _ from 'lodash';
+
+$ npm i @types/lodash
+
+// définition des headers
+const httpOptions = {
+headers: new HttpHeaders({
+'Content-Type': 'application/json',
+})
+};

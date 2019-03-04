@@ -3,6 +3,16 @@ import { Album, List } from '../album';
 import { ALBUMS, ALBUM_LISTS  } from '../mock-albums';
 import { sortBy } from 'sort-by-typescript';
 import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // Service et classe utile
+import { map } from 'rxjs/operators'; // Opérateurs de RxJS
+import * as _ from 'lodash'; // libraire utile pour le traitement de données
+
+// définition des headers
+const httpOptions = {
+  headers: new HttpHeaders({
+  'Content-Type': 'application/json',
+  })
+};
 
 @Injectable({
   providedIn: 'root' // injecter de manière globale
