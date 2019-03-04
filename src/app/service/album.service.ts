@@ -4,6 +4,7 @@ import { ALBUMS, ALBUM_LISTS  } from '../mock-albums';
 import { sortBy } from 'sort-by-typescript';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // Service et classe utile
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'; // Opérateurs de RxJS
 import * as _ from 'lodash'; // libraire utile pour le traitement de données
 
@@ -27,30 +28,33 @@ export class AlbumService {
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
   subjectAlbum = new Subject<Album>();
 
-  
   constructor(private http: HttpClient) { }
 
   count():number{
     return this.albums.length;
   }
+
   //elle retournera tous les albums sort by duration.
-  getAlbums():Album[]{
-    if(this.albums){
-      return this.albums.sort(sortBy('-duration')); // avec sort-by-typescript
-      /* ou avec mapping
-      return this.albums.sort((a, b) => 
-      (b.duration - a.duration ));
-      */
-    } 
-      return null;
+  getAlbums():Observable<Album[]>{
+
+    return this.http.get<Album[]>(this.albumsUrl+'/.json', httpOptions).pipe(
+          // Préparation des données avec _.values pour avoir un format exploitable dans l'app
+          map(albums => _.values(albums)),
+          // Ordonnez les albums par ordre de durées décroissantes
+          map(albums => {
+
+            return albums.sort(sortBy('-duration'));
+          }),
+    );
   }
 
   //elle retournera un album
-  getAlbum( id: string): Album{
-    if (this.albums.find(elem => elem.id === id)){
-      return this.albums.find(elem => elem.id === id);
-    }
-    return null;
+  getAlbum( id: string): Observable<Album>{
+    // URL/ID/.json pour récupérer un album
+    return this.http.get<Album>(this.albumsUrl+`/${id}/.json`, httpOptions).pipe(
+      map(album => album) //JSON
+    );
+    
   }
 
   //elle retournera la liste d’un album

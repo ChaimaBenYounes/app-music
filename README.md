@@ -76,3 +76,7 @@ export class AlbumService {
 // convention dans l'API ajoutez votre identifant de base de données
 private albumsUrl = 'https://music-[VOTRE_IDENTIFIANT].firebaseio.com/albums';
 private albumListsUrl = 'https://music-[VOTRE_IDENTIFIANT].firebaseio.com/albumLists';
+
+1-
+refactorisez les méthodes getAlbums et getAlbum 
+Attention nous utilisons lodash qui est une libraire JS; elle nous permet ici de préparer les données récupérées depuis Firebase pour les exploiter correctement dans notre application.
