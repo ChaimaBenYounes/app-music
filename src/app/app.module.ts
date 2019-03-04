@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { MinuteSecondsPipe } from './pipe/minute-seconds-pipe';
 import { SearchComponent } from './search/search.component';
@@ -37,6 +38,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     FormsModule,
     BrowserAnimationsModule,
     RouterModule,
+    HttpClientModule, // module HttpClient
   ],
   providers: [],
   bootstrap: [AppComponent]

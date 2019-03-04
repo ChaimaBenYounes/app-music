@@ -25,3 +25,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## HttpClient
+
+Ce module basé sur RxJS permet d’interroger des serveurs distants à l’aide du
+protocole HTTP. Il utilise l’interface XMLHttpRequest exposée par le navigateur.
+HttpClient est une couche d’abstraction pour la consommation de requêtes
+HTTP : testabilité, gestion des erreurs, objets Request et Response.
+Importez le module dans AppModule de l’application :
+import { HttpClientModule } from '@angular/common/http';
+// N'oubliez pas de le définir dans les imports
+imports: [
+BrowserModule,
+FormsModule,
+RouterModule.forRoot(albumsRoutes),
+HttpClientModule, // module HttpClient
+],
