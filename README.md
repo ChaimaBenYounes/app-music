@@ -60,3 +60,6 @@ headers: new HttpHeaders({
 'Content-Type': 'application/json',
 })
 };
+
+L’injection de dépendance dans le service se fera de manière classique.
+constructor(private http: HttpClient) { }

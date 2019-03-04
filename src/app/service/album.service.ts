@@ -24,7 +24,7 @@ export class AlbumService {
   subjectAlbum = new Subject<Album>();
 
   
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   count():number{
     return this.albums.length;
