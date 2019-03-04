@@ -19,6 +19,10 @@ const httpOptions = {
 })
 export class AlbumService {
 
+  // convention dans l'API ajoutez votre identifant de base de données
+  private albumsUrl = 'https://music-9a476.firebaseio.com/albums';
+  private albumListsUrl = 'https://music-9a476.firebaseio.com/albumLists';
+
   albums : Album[] =  ALBUMS;
   albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
   subjectAlbum = new Subject<Album>();

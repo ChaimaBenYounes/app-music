@@ -63,3 +63,16 @@ headers: new HttpHeaders({
 
 L’injection de dépendance dans le service se fera de manière classique.
 constructor(private http: HttpClient) { }
+
+Définition des routes
+
+Vous devez également définir les routes permettant d’accéder aux données sur le
+serveur de base de données Firebase dans votre service AlbumService.
+// Service AlbumService
+@Injectable({
+providedIn: 'root'
+})
+export class AlbumService {
+// convention dans l'API ajoutez votre identifant de base de données
+private albumsUrl = 'https://music-[VOTRE_IDENTIFIANT].firebaseio.com/albums';
+private albumListsUrl = 'https://music-[VOTRE_IDENTIFIANT].firebaseio.com/albumLists';
