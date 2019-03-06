@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { PaginateComponent } from './paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 // Initialize Firebase
@@ -44,7 +45,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     RegisterComponent,
     PaginateComponent,
     AudioPlayerComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
