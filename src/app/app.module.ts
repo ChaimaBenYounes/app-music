@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import * as firebase from 'firebase';
 
 import { AppComponent } from './app.component';
 import { MinuteSecondsPipe } from './pipe/minute-seconds-pipe';
