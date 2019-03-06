@@ -13,7 +13,7 @@ const routes: Routes = [
   { path:'login', component : LoginComponent},
   { path:'register', component : RegisterComponent},
   { path:'album/:id', component : AlbumDescriptionComponent},
-  { path:'dashboard/', canActivate: [GuardService], component : DashboardComponent},
+  { path:'dashboard', canActivate: [GuardService], component : DashboardComponent},
 ] 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

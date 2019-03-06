@@ -6,7 +6,8 @@ providedIn: 'root'
 })
 export class GuardService implements CanActivate {
 
-  constructor(private aS: AuthService, private router: Router) { }
+  authState : string;
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
