@@ -10,6 +10,7 @@ import { AuthService } from '../service/auth.service';
 export class LoginComponent implements OnInit {
 
   messageError : string = "";
+  messageSuccess : string = "";
 
   constructor(private authService : AuthService) { }
 
@@ -17,7 +18,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    console.log(this.authService.auth(form.value['email'], form.value['password']));
+    
+    this.authService.auth(form.value['email'], form.value['password']).then(
+      res => {
+               console.log(res);
+               this.messageError = "";
+               this.messageSuccess = "Your account has been created";
+             },
+      err => {
+               this.messageError = err.message;
+               this.messageSuccess = "";
+             }
+    );
    
   }
 

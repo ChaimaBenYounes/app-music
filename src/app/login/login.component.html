@@ -4,7 +4,8 @@
 <a routerLink="/register" class="float-right btn btn-outline-primary">Créez votre compte</a>
 <h4 class="card-title mb-4 mt-1">Connectez-Vous </h4>
 <form (ngSubmit)="onSubmit(formLogin)" #formLogin="ngForm" >
-        <div class="alert alert-danger" role="alert" *ngIf="messageError">{{ messageError }}</div>   
+        <div class="alert alert-danger" role="alert" *ngIf="messageError">{{ messageError }}</div> 
+        <div class="alert alert-success" role="alert" *ngIf="messageSuccess">{{ messageSuccess }}</div>  
         <div class="form-group">
     	<label>Email</label>
         <input ngModel required name="email" class="form-control" placeholder="you@example.com*" type="email">
