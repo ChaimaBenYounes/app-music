@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { AlbumService } from '../service/album.service';
 
-
 @Component({
   selector: 'app-paginate',
   templateUrl: './paginate.component.html',
@@ -28,13 +27,17 @@ export class PaginateComponent implements OnInit {
    * @param page 
    */
   init(page : number = 1) {
-    this.total = this.ablumService.count();
-    this.numberPages = Math.ceil(this.total / this.perPage);
-    this.currentPage = page;
-    this.pages = [];
-    for (let i = 1; i < this.numberPages + 1; i++) {
+    // lorsqu'on a à disposition le nombre d'albums depuis la base de données :
+    this.ablumService.count().subscribe( count => {
+      this.total = count;
+      this.numberPages = Math.ceil(this.total / this.perPage);
+      this.currentPage = page;
+      this.pages = [];
+
+      for (let i = 1; i < this.numberPages + 1; i++) {
       this.pages.push(i);
-    }
+      }
+    });
 }
 
 selectedPage(page: number) {

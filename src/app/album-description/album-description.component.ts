@@ -10,7 +10,7 @@ import { AlbumService } from '../service/album.service';
 })
 export class AlbumDescriptionComponent implements OnInit {
 
-  album : Album ;
+  album : Album; 
 
   constructor(
     private route: ActivatedRoute, // récupérez le service route
@@ -18,9 +18,10 @@ export class AlbumDescriptionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.album =  this.aS.getAlbum( id);
-    console.log(id);
+   const id = this.route.snapshot.paramMap.get('id');
+   this.aS.getAlbum(id).subscribe(
+      album => {this.album = album}
+    );
   }
 
 }

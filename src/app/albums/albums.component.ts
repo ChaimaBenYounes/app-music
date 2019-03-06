@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../album'; 
-import { ALBUMS } from '../mock-albums';
 import { AlbumService } from '../service/album.service';
 
 @Component({
@@ -11,16 +10,24 @@ import { AlbumService } from '../service/album.service';
 export class AlbumsComponent implements OnInit {
 
   titlePage: string = "Page principale Albums Music";
-  albums : Album[] =  ALBUMS;
+  albums : Album[] = [];
   selectedAlbum : Album;
   status: string = null; // pour gérer l'affichage des caractères [play] 
   
   constructor(private ablumService: AlbumService) {}
 
   ngOnInit() {
-    this.albums = this.ablumService.paginate(0,this.ablumService.paginateNumberPage());
-    console.log(this.ablumService.count())
 
+    this.ablumService.paginate(0, this.ablumService.paginateNumberPage()).subscribe(
+      albums => this.albums = albums
+    );
+
+    //this.albums = this.ablumService.paginate(0,this.ablumService.paginateNumberPage());
+    
+    // récupération des données depuis Firebase avec la méthode HttpClient
+    this.ablumService.getAlbums().subscribe(
+      albums => this.albums = albums
+    );
   }
 
   onSelect(album: Album) {
@@ -36,7 +43,9 @@ export class AlbumsComponent implements OnInit {
     if ($event) this.albums = $event;
   }
   paginate($event){
-    this.albums = this.ablumService.paginate($event.start,$event.end);
+    this.ablumService.paginate($event.start,$event.end).subscribe(
+      albums => this.albums = albums
+    );
   }
 
 }

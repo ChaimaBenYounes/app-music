@@ -15,9 +15,7 @@ export class AudioPlayerComponent implements OnInit {
   current : number;
   album : Album;
   albumList : List; 
-  constructor(private ablumService : AlbumService) {
-   
-  }
+  constructor(private ablumService : AlbumService) {}
 
   ngOnInit() {
   
@@ -26,7 +24,10 @@ export class AudioPlayerComponent implements OnInit {
       this.ratio = 0;
       this.showplayer = true; 
       this.album = album;
-      this.albumList = this.ablumService.getAlbumList(album.id);
+      this.ablumService.getAlbumList(album.id).subscribe(
+        albumList => this.albumList = albumList
+      );
+    
       // if (list null) TODO
       let nbAlbumList = this.albumList.list.length;
       let durationPerSong = album.duration / nbAlbumList;
@@ -37,12 +38,12 @@ export class AudioPlayerComponent implements OnInit {
       let step = this.ratio;
       let timer = durationPerSong *1000; // 20*1000sec
       
-      /*setInterval(() => {
+      setInterval(() => {
         if(album.status ==="off"){
           this.showplayer = false;
           this.ratio = 0;
         } 
-      });*/
+      });
 
       const player = setInterval(() => {
           this.current ++;
