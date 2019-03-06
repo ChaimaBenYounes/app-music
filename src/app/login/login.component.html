@@ -3,16 +3,16 @@
 <article class="card-body">
 <a routerLink="/register" class="float-right btn btn-outline-primary">Créez votre compte</a>
 <h4 class="card-title mb-4 mt-1">Connectez-Vous </h4>
-	 <form (ngSubmit)="onSubmit(formLogin)" #formLogin="ngForm" >
+<form (ngSubmit)="onSubmit(formLogin)" #formLogin="ngForm" >
         <div class="alert alert-danger" role="alert" *ngIf="messageError">{{ messageError }}</div>   
         <div class="form-group">
     	<label>Email</label>
-        <input name="" class="form-control" placeholder="you@example.com*" type="email">
+        <input ngModel required name="email" class="form-control" placeholder="you@example.com*" type="email">
     </div> <!-- form-group// -->
     <div class="form-group">
     	<a class="float-right" href="#">Mot de passe oublié ?</a>
     	<label>Mot de passe</label>
-        <input class="form-control" placeholder="Mot de passe*" type="password">
+        <input ngModel required name="password" class="form-control" placeholder="Mot de passe*" type="password">
     </div> <!-- form-group// --> 
     <div class="form-group"> 
     <div class="checkbox">
