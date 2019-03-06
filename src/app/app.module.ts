@@ -19,6 +19,19 @@ import { PaginateComponent } from './paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
+
+// Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyCzg8jxB9r6PvmZ79nmEKyAzxZtUJWsKDc",
+    authDomain: "music-9a476.firebaseapp.com",
+    databaseURL: "https://music-9a476.firebaseio.com",
+    projectId: "music-9a476",
+    storageBucket: "music-9a476.appspot.com",
+    messagingSenderId: "304064632742"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+
 @NgModule({
   declarations: [
     AppComponent,
