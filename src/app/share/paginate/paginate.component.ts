@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { AlbumService } from '../service/album.service';
+import { AlbumService } from '../../service/album.service';
 
 @Component({
   selector: 'app-paginate',

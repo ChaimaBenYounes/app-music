@@ -15,7 +15,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { RegisterComponent } from './register/register.component';
-import { PaginateComponent } from './paginate/paginate.component';
+import { PaginateComponent } from './share/paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -55,7 +55,6 @@ import { AlbumComponent } from './admin/album/album.component';
     FormsModule,
     BrowserAnimationsModule,
     RouterModule,
-    
     HttpClientModule, // module HttpClient
   ],
   providers: [],
