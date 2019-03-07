@@ -46,7 +46,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PaginateComponent,
     AudioPlayerComponent,
     TimeAgoPipe,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
