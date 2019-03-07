@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
                //console.log(res);
                this.messageError = "";
                this.messageSuccess = "Your account has been created";
-               this.router.navigate(['dashboard']);
+               this.router.navigate(['admin/album']);
              },
       err => {
                this.messageError = err.message;

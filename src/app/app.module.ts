@@ -19,7 +19,7 @@ import { PaginateComponent } from './paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { AlbumComponent } from './admin/album/album.component';
 
 // Initialize Firebase
   const firebaseConfig = {
@@ -47,6 +47,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AudioPlayerComponent,
     TimeAgoPipe,
     DashboardComponent,
+    AlbumComponent, // import ./admin/album/album.component
   ],
   imports: [
     BrowserModule,
@@ -54,6 +55,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     BrowserAnimationsModule,
     RouterModule,
+    
     HttpClientModule, // module HttpClient
   ],
   providers: [],

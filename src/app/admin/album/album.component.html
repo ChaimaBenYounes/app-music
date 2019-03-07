@@ -1,3 +1,36 @@
-<p>
-  album works!
-</p>
+<button type="button" class="btn btn-info">Ajouter Album</button>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Update</th>
+        <th scope="col">ref</th>
+        <th scope="col">name</th>
+        <th scope="col">title</th>
+        <th scope="col">description</th>
+        <th scope="col">duration</th>
+        <th scope="col">status</th>
+        <th scope="col">url</th>
+        <th scope="col">like</th>
+        <th scope="col">tags</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let album of albums">
+        <td scope="row">{{album.id}}</td>
+        <td><button type="button" class="btn btn-primary">Update</button></td>
+        <td>{{album.ref}}</td>
+        <td>{{album.name}}</td>
+        <td>{{album.title}}</td>
+        <td>{{album.description}}</td>
+        <td>{{album.duration}}</td>
+        <td>{{album.status}}</td>
+        <td>{{album.url}}</td>
+        <td>{{album.like}}</td>
+        <td>{{album.tags}}</td> 
+        <td><button type="button" class="btn btn-danger">Delete</button></td> 
+      </tr>
+    </tbody>
+  </table>
+  <app-paginate (setPaginate)='paginate($event)'></app-paginate>

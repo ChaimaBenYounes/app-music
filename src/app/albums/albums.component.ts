@@ -21,8 +21,6 @@ export class AlbumsComponent implements OnInit {
     this.ablumService.paginate(0, this.ablumService.paginateNumberPage()).subscribe(
       albums => this.albums = albums
     );
-
-    //this.albums = this.ablumService.paginate(0,this.ablumService.paginateNumberPage());
     
     // récupération des données depuis Firebase avec la méthode HttpClient
     this.ablumService.getAlbums().subscribe(

@@ -4,7 +4,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { RegisterComponent } from './register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AlbumComponent } from './admin/album/album.component';
 import { GuardService } from './service/guard.service';
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path:'login', component : LoginComponent},
   { path:'register', component : RegisterComponent},
   { path:'album/:id', component : AlbumDescriptionComponent},
-  { path:'dashboard', canActivate: [GuardService], component : DashboardComponent},
+  { path:'admin/album', canActivate: [GuardService], component : AlbumComponent},
 ] 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
