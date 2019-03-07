@@ -15,16 +15,20 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService : AuthService, 
-    private router : Router ) { }
+    private router : Router ) {
 
-  ngOnInit() {
+    if(this.authService.authenticated()){
+      this.router.navigate(['albums'], {queryParams:{message:'success'}});
+    }
   }
+
+  ngOnInit() {}
 
   onSubmit(form: NgForm): void {
     
     this.authService.auth(form.value['email'], form.value['password']).then(
       res => {
-               console.log(res);
+               //console.log(res);
                this.messageError = "";
                this.messageSuccess = "Your account has been created";
                this.router.navigate(['dashboard']);
@@ -34,7 +38,6 @@ export class LoginComponent implements OnInit {
                this.messageSuccess = "";
              }
     );
-   
   }
 
 }

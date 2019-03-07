@@ -13,7 +13,7 @@ export class GuardService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): any | boolean {
 
-      if (this.authService.authenticated()) return true;
-      return false;
+    if (this.authService.authenticated()) return true;
+    return false;
   }
 }

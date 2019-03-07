@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import { Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,26 +11,37 @@ export class AuthService {
 
   // état de la connexion
   private authState: boolean = false;
+  subjectState = new Subject<boolean>();
 
   constructor(private router: Router) {
     firebase.auth().onAuthStateChanged( (user) => {
       if (user) {
         this.authState = true;
-        return true;
+        this.subjectState.next(this.authState);
       } else {
-        this.authState = null;
-        return false;
+        this.authState = false;
+        this.subjectState.next(this.authState);
       }
     });
   }
 
-  // méthode d'authentification
+  authenticated(): boolean{ 
+    return this.authState == true;
+  }
+
+  // logIn
   auth(email: string, password: string): Promise<any> {
       return firebase.auth().signInWithEmailAndPassword(email, password);
   }
-
-  authenticated(){
-    return this.authState;
+  
+  //logout
+  logout(){
+    firebase.auth().signOut().then(
+      ()=> {
+      this.authState = false;
+      this.router.navigate(['albums']);
+      }
+    )
   }
-
+  
 }
