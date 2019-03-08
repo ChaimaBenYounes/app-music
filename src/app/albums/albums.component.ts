@@ -13,19 +13,23 @@ export class AlbumsComponent implements OnInit {
   albums : Album[] = [];
   selectedAlbum : Album;
   status: string = null; // pour gérer l'affichage des caractères [play] 
-  
+  count;
+
   constructor(private ablumService: AlbumService) {}
 
   ngOnInit() {
+    this.ablumService.paginate(0, 3).subscribe(
+      albums => this.albums = albums);
 
-    this.ablumService.paginate(0, this.ablumService.paginateNumberPage()).subscribe(
-      albums => this.albums = albums
+    this.count = this.ablumService.count().subscribe(
+      count => this.count = count
     );
-    
-    // récupération des données depuis Firebase avec la méthode HttpClient
-    this.ablumService.getAlbums().subscribe(
+  }
+
+  paginate($event) {
+    this.ablumService.paginate($event.start, $event.end).subscribe(
       albums => this.albums = albums
-    );
+    )
   }
 
   onSelect(album: Album) {
@@ -40,10 +44,6 @@ export class AlbumsComponent implements OnInit {
   searchByNameParent($event){
     if ($event) this.albums = $event;
   }
-  paginate($event){
-    this.ablumService.paginate($event.start,$event.end).subscribe(
-      albums => this.albums = albums
-    );
-  }
+  
 
 }

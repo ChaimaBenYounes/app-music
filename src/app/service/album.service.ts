@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Album, List } from '../album'; 
-import { sortBy } from 'sort-by-typescript';
+//import { sortBy } from 'sort-by-typescript';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // Service et classe utile
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'; // Opérateurs de RxJS
 import * as _ from 'lodash'; // libraire utile pour le traitement de données
-
+import * as firebase from 'firebase/app';
 
 // définition des headers
 const httpOptions = {
@@ -26,10 +26,45 @@ export class AlbumService {
 
   private httpClientGetAlbums = this.http.get<Album[]>(this.albumsUrl+'/.json', httpOptions);
   
+  sendCurrentNumberPage = new Subject<number>(); // pour mettre à jour la pagination 
   subjectAlbum = new Subject<Album>();
 
   constructor(private http: HttpClient) { }
 
+  //pagination
+  paginate(start: number, end: number): Observable<Album[]> {
+
+    // Vous devez faire le mapping avant la récupération des données
+    return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(
+      // Préparation des données pour avoir un format exploitable dans l'application
+      // JSON en Array JSON
+      map(albums => {
+        let Albums: Album[] = [];
+        _.forEach(albums, (v, k) => {
+          v.id = k.toString();
+          Albums.push(v);
+        });
+
+        return Albums;
+      }),
+      // Ordonner les albums par ordre de durée décroissante
+      map(albums => {
+        return albums.sort(
+          (a, b) => { return b.duration - a.duration }
+        ).slice(start, end); // slicing des données
+      })
+    )
+  }
+
+  currentPage(page: number) {
+    return this.sendCurrentNumberPage.next(page);
+  }
+  paginateNumberPage():number{
+
+    return 3 ;
+  }
+
+  //count album
   count():Observable<number>{
     return this.httpClientGetAlbums.pipe(
         map(album => {
@@ -46,8 +81,10 @@ export class AlbumService {
           map(albums => _.values(albums)),
           // Ordonnez les albums par ordre de durées décroissantes
           map(albums => {
-
-            return albums.sort(sortBy('-duration'));
+            return albums.sort(
+              (a, b) => { return b.duration - a.duration }
+            );
+            //return albums.sort(sortBy('-duration'));
           }),
     );
   }
@@ -66,26 +103,9 @@ export class AlbumService {
   getAlbumList( id : string) : Observable<List>{
 
     // URL/ID/.json pour récupérer un album
-    return this.http.get<List>(this.albumListsUrl+`/${id}/.json`, httpOptions).pipe(
-      map(albumList => albumList) //JSON
-    );
+    return this.http.get<List>(this.albumListsUrl+`/${id}/.json`, httpOptions);
   }
 
-  //pagination
-  paginate(start: number, end: number):Observable<Album[]>{
-   
-    return this.httpClientGetAlbums.pipe(
-      map( album => album.sort(
-        (a, b) => { return b.duration - a.duration }
-      ).slice(start, end)
-    ));
-
-  }
-  
-  paginateNumberPage():number{
-
-    return 3 ;
-  }
 
   //search 
   search(word: string): Observable<Album[]> {

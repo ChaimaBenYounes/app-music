@@ -8,19 +8,29 @@ import { AlbumService } from '../../service/album.service';
   styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit {
-  albums : Album[] = [];
+  
+  albums;
+  perPage: number = 5;
+  message: string;
+  count;
+
   constructor(private ablumService: AlbumService) { }
 
   ngOnInit() {
+   // on récupère les albums directement comme ci-dessous, dans le template on utilisera le pipe async
+    // pour récupérer les albums :
     this.ablumService.paginate(0, this.ablumService.paginateNumberPage()).subscribe(
       albums => this.albums = albums
     );
+
+    this.count = this.ablumService.count();
   }
 
-  paginate($event){
+  paginate($event) {
     this.ablumService.paginate($event.start,$event.end).subscribe(
       albums => this.albums = albums
     );
   }
+
 
 }

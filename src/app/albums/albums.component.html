@@ -7,7 +7,7 @@
       <div class="col-sm-8 music">
 
             <app-search (searchByName)="searchByNameParent($event)"></app-search>
-         
+           
           <h1> {{ titlePage }} </h1>
           <button type="button" class="btn btn-lg btn-danger">You are in an anonymous mode.</button>
           <div class="card" *ngFor="let album of albums; let i = index" >
@@ -40,7 +40,7 @@
           </div>
           <!-- .card -->
          
-          <app-paginate (setPaginate)='paginate($event)'></app-paginate> 
+          <app-paginate (setPaginate)="paginate($event)"></app-paginate>
           
       </div><!-- .music -->
 

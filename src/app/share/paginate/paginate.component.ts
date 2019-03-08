@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit,  Output, EventEmitter } from '@angular/core';
 import { AlbumService } from '../../service/album.service';
 
 @Component({
@@ -7,70 +7,76 @@ import { AlbumService } from '../../service/album.service';
   styleUrls: ['./paginate.component.scss']
 })
 export class PaginateComponent implements OnInit {
-  @Output() setPaginate : EventEmitter<{ start : number, end : number}> = new EventEmitter();
+  @Output() setPaginate: EventEmitter<{ start: number; end: number }> = new EventEmitter();
 
   pages: number[] = []; // pages num
-  perPage: number; // number album(s) per page variable d'env 
+  perPage: number = 2; // number album(s) per page
   total: number = 0; // total albums
   numberPages: number = 0;
   currentPage: number;
-  constructor(private ablumService: AlbumService) {
-    this.perPage = this.ablumService.paginateNumberPage();
-   }
+
+  constructor(private aS: AlbumService) { }
 
   ngOnInit() {
     this.init();
+
+    // Observable 
+    this.aS.sendCurrentNumberPage.subscribe(numberPage => {
+      this.currentPage = numberPage;
+      this.init(this.currentPage);
+      // console.log(`Un observer à envoyer un message : ${this.currentPage}`)
+    });
   }
 
   /**
    *  init paginate
    * @param page 
    */
-  init(page : number = 1) {
-    // lorsqu'on a à disposition le nombre d'albums depuis la base de données :
-    this.ablumService.count().subscribe( count => {
-      this.total = count;
-      this.numberPages = Math.ceil(this.total / this.perPage);
+  init(page: number = 1) {
+    this.aS.count().subscribe(count => {
+      this.numberPages = Math.ceil(count / this.perPage);
       this.currentPage = page;
       this.pages = [];
-
       for (let i = 1; i < this.numberPages + 1; i++) {
-      this.pages.push(i);
+        this.pages.push(i);
       }
-    });
-}
-
-selectedPage(page: number) {
-  this.currentPage = page;
-  this.setPaginate.emit(this.paginate(page));
-
-}
-
-next() {
-  if (this.currentPage >= this.numberPages) {
-    this.currentPage = 1;
-  } else {
-    this.currentPage++;
+    })
   }
-  this.setPaginate.emit(this.paginate(this.currentPage)); // émettre la page courante
-}
 
-previous() {
-  if (this.currentPage == 1) {
-    this.currentPage = this.numberPages;
-  } else {
-    this.currentPage--;
+  selectedPage(page: number) {
+    this.currentPage = page;
+    this.setPaginate.emit(this.paginate(page));
+    this.aS.currentPage(this.currentPage); // mettre à jour les autres components paginate
   }
-  this.setPaginate.emit(this.paginate(this.currentPage));
 
-}
+  next() {
+    if (this.currentPage >= this.numberPages) {
+      this.currentPage = 1;
+    } else {
+      this.currentPage++;
+    }
+    this.aS.currentPage(this.currentPage); // mettre à jour les autres components paginate
+    this.setPaginate.emit(this.paginate(this.currentPage)); // émettre la page courante
 
-paginate(page: number): { start: number, end: number } {
-  let start = (page - 1) * this.perPage; // 0 2
-  let end = start + this.perPage; // 2 4
+  }
 
-  return { start: start, end: end };
-}
+  previous() {
+    if (this.currentPage == 1) {
+      this.currentPage = this.numberPages;
+    } else {
+      this.currentPage--;
+    }
+    this.aS.currentPage(this.currentPage);
+    this.setPaginate.emit(this.paginate(this.currentPage));
 
+  }
+
+  paginate(page: number): { start: number, end: number } {
+    let start = (page - 1) * this.perPage;
+    let end = start + this.perPage;
+
+    return { start: start, end: end };
+  }
+  
 
 }
