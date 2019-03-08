@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ShareModule } from './share/share.module';
+import { AdminModule } from './admin/admin.module';
+
 import * as firebase from 'firebase';
 
 import { AppComponent } from './app.component';
@@ -15,11 +18,10 @@ import { AlbumsComponent } from './albums/albums.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { RegisterComponent } from './register/register.component';
-import { PaginateComponent } from './share/paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AlbumComponent } from './admin/album/album.component';
+
 
 // Initialize Firebase
   const firebaseConfig = {
@@ -43,11 +45,9 @@ import { AlbumComponent } from './admin/album/album.component';
     LoginComponent,
     AlbumDescriptionComponent,
     RegisterComponent,
-    PaginateComponent,
     AudioPlayerComponent,
     TimeAgoPipe,
     DashboardComponent,
-    AlbumComponent, // import ./admin/album/album.component
   ],
   imports: [
     BrowserModule,
@@ -56,6 +56,8 @@ import { AlbumComponent } from './admin/album/album.component';
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule, // module HttpClient
+    AdminModule,
+    ShareModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
