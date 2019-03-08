@@ -120,4 +120,21 @@ export class AlbumService {
     this.http.put<void>(this.albumsUrl + `/${album.id}/.json`, album).subscribe(() => {});
   }
 
+  //add Album
+  addAlbum(album: Album): Observable<any> {
+    return this.http.post<void>(this.albumsUrl + '/.json', album);
+  }
+
+  //Update Album
+  updateAlbum(ref: string, album: Album): Observable<void> {
+    console.log(ref);
+    return this.http.put<void>(this.albumsUrl + `/${ref}/.json`, album);
+  }
+
+  //Delete Album
+  deleteAlbum(id: string): Observable<void> {
+    return this.http.delete<void>(this.albumsUrl + `/${id}/.json`);
+  }
+
+
 }

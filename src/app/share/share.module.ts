@@ -11,7 +11,8 @@ import { AddAlbumComponent } from './add-album/add-album.component';
     AddAlbumComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule, 
+    ReactiveFormsModule,
   ],
   exports: [PaginateComponent, FormsModule, ReactiveFormsModule]
 })

@@ -8,7 +8,7 @@ import { GuardService } from './../service/guard.service';
 
 const routes: Routes = [
   { path:'admin/album', canActivate: [GuardService], component : AlbumComponent},
-  { path:'admin/add', canActivate: [GuardService], component : AddAlbumComponent },
+  { path:'admin/album/add', canActivate: [GuardService], component : AddAlbumComponent },
 ]
 @NgModule({
     declarations: [
