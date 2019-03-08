@@ -11,16 +11,16 @@ const routes: Routes = [
   { path:'admin/add', canActivate: [GuardService], component : AddAlbumComponent },
 ]
 @NgModule({
-  declarations: [
-    AlbumComponent,// déclarer le component dans le module
-  ], 
-  imports: [
-    CommonModule, // directives classiques à importer dans le module
-    ShareModule,
-    RouterModule.forChild(routes) // définition des routes dans le sous-module
-  ],
-  exports : [
-    AlbumComponent, // exporter le component pour le reste de l'application
-  ]
+    declarations: [
+        AlbumComponent,// déclarer le component dans le module
+    ], 
+    imports: [
+        CommonModule, // directives classiques à importer dans le module
+        ShareModule,
+        RouterModule.forChild(routes) // définition des routes dans le sous-module
+    ],
+    exports : [
+        AlbumComponent, // exporter le component pour le reste de l'application
+    ]
 })
 export class AdminModule { }
