@@ -12,6 +12,7 @@ import { Album } from 'src/app/album';
 export class AddAlbumComponent implements OnInit {
 
   albumForm : FormGroup;
+  selectedImage: File = null;
   
   constructor(private formBuilder : FormBuilder,
               private albumService : AlbumService,
@@ -71,7 +72,9 @@ export class AddAlbumComponent implements OnInit {
           }
     );
 
-    //this.router.navigate(['/album/{{album.id}}']);
+  }
+  onSelectedImage(event) {
+    this.selectedImage = <File>event.target.files[0];
   }
 
 }
