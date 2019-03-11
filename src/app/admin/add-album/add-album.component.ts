@@ -28,15 +28,17 @@ export class AddAlbumComponent implements OnInit {
         name : new FormControl('', [Validators.required, Validators.minLength(5)]),
         title : new FormControl('', [Validators.required, Validators.minLength(5)]),
         description : new FormControl('', [Validators.required, Validators.minLength(10)]),
-        duration : new FormControl('', [Validators.required]),
-        status : new FormControl('', [Validators.required, Validators.minLength(5)]),
-        url : new FormControl('', []),
+        duration : new FormControl('', [Validators.required,
+                                        Validators.pattern('[0-9]*'),
+                                        Validators.max(900)
+        ]),
+        status : new FormControl('off', []),
         like : new FormControl('', []),
         tags : new FormControl('', []),
       })  
   }
 
-  //GETTER
+  //GETTER for the validation in the form
   get ref() { return this.albumForm.get('ref'); }
   get name() { return this.albumForm.get('name'); }
   get title() { return this.albumForm.get('title'); }
@@ -50,26 +52,46 @@ export class AddAlbumComponent implements OnInit {
   //OnSubmit Form
   onSubmit() {
     const formValue = this.albumForm.value;
-    console.log(formValue);
-    const newAlbum = new Album(
-      '',
-      formValue['ref'],
-      formValue['name'],
-      formValue['title'],
-      formValue['description'],
-      formValue['duration'],
-      formValue['status'],
-      formValue['url'],
-      formValue['like'],
-      formValue['tags'],
-    );
+    let newAlbum : Album = {
+      id : '',
+      ref : formValue['ref'],
+      name : formValue['name'],
+      title : formValue['title'],
+      description : formValue['description'],
+      duration : formValue['duration'],
+      status :'off',
+      url : '',
+      like : formValue['like'],
+      tags : formValue['tags'],
+    }
 
+    //HttpClient Observable se désinscrit tout seul après avoir terminé son action
     this.albumService.addAlbum(newAlbum).subscribe(
-          album => { console.log(album) },
-          error => console.error(error),
-          () => {
-          this.router.navigate(['admin/album'], { queryParams: { message: 'success' } });
-          }
+      a => {
+        if (this.selectedImage != null) {
+          a.name || 'anonymous';
+          this.albumService.uploadFile(this.selectedImage)
+            .then(
+              snapshot => {
+                return snapshot.ref.getDownloadURL()
+              }
+            )
+            .then(url => {
+              newAlbum.url = url;
+              this.albumService.updateAlbum(a.name as string, newAlbum).subscribe(
+                () => {
+                  console.log('updated with url image')
+                }
+              );
+            }
+            )
+            .catch(error => console.log(error))
+        }
+      },
+      error => console.error(error),
+      () => {
+        this.router.navigate(['/admin/album'], { queryParams: { message: 'success' } });
+      }
     );
 
   }
