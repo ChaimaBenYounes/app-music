@@ -27,8 +27,6 @@ const routes: Routes = [
     ],
     exports : [
         AlbumComponent, // exporter le component pour le reste de l'application
-        AddAlbumComponent,
-        DeleteAlbumComponent
     ]
 })
 export class AdminModule { }
