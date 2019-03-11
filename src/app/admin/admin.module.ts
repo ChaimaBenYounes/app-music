@@ -6,6 +6,7 @@ import { AlbumComponent } from './album/album.component';
 import { AddAlbumComponent  } from './add-album/add-album.component';
 import { GuardService } from './../service/guard.service';
 import { DeleteAlbumComponent } from './delete-album/delete-album.component';
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 
 const routes: Routes = [
   { path:'admin/album', canActivate: [GuardService], component : AlbumComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
         AlbumComponent,// déclarer le component dans le module
         AddAlbumComponent,
         DeleteAlbumComponent,
+        ModalDialogComponent,
     ], 
     imports: [
         CommonModule, // directives classiques à importer dans le module

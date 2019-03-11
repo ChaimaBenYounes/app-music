@@ -4,7 +4,6 @@ import {
     style,
     animate,
     transition,
-    animation
     } from '@angular/animations';
 
 export const trasAnimation = [
@@ -26,4 +25,16 @@ export const trasAnimation = [
       transition('inactive => active', animate('0.3s ease-in')),
       transition('active => inactive', animate('0.3s 0.3s ease-out')),
     ]),
+];
+
+export const modalAnimation =  [
+  trigger('modal', [
+    transition('void => *', [
+      style({ transform: 'scale3d(.3, .3, .3)' }),
+      animate(100)
+    ]),
+    transition('* => void', [
+      animate(100, style({ transform: 'scale3d(.0, .0, .0)' }))
+    ])
+  ])
 ];
