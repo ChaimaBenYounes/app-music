@@ -11,7 +11,7 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 const routes: Routes = [
   { path:'admin/album', canActivate: [GuardService], component : AlbumComponent},
   { path:'admin/album/add', canActivate: [GuardService], component : AddAlbumComponent },
-  { path:'admin/album/delete', canActivate: [GuardService], component : DeleteAlbumComponent },
+  { path: 'admin/delete/:id/:action',/*canActivate: [GuardService],*/ component: DeleteAlbumComponent },
 ]
 @NgModule({
     declarations: [

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Album } from '../../album'; 
 import { AlbumService } from '../../service/album.service';
 import { Router } from '@angular/router';
 
@@ -15,6 +14,9 @@ export class AlbumComponent implements OnInit {
   message: string;
   count;
 
+  showModal: boolean = false;
+  albumId;
+
   constructor(private ablumService: AlbumService,
               private router: Router) { }
 
@@ -26,6 +28,7 @@ export class AlbumComponent implements OnInit {
     );
 
     this.count = this.ablumService.count();
+
   }
 
   paginate($event) {
@@ -34,7 +37,31 @@ export class AlbumComponent implements OnInit {
     );
   }
 
-  deleteAlbum(id: string){
+  //Modals
+  deleteAlbum(id: number) {
+    // routerLink="/admin/delete/{{album.id}}/deleted"
+    this.showModal = true;
+    this.albumId = id;
+  }
+
+  choice($event) {
+    this.showModal = $event.showModal;
+  }
+
+  responseModalsYes() {
+    this.showModal = false;
+    this.router.navigate([
+      '/admin/delete/' + this.albumId + '/deleted'
+    ], { queryParams: { message: 'Success' } }
+    );
+  }
+
+  responseModalsNo() {
+    this.showModal = false;
+  }
+
+
+  /*deleteAlbum(id: string){
       this.ablumService.deleteAlbum(id).subscribe(
         album => { console.log(album) },
         error => console.error(error),
@@ -42,8 +69,6 @@ export class AlbumComponent implements OnInit {
           this.router.navigate(['admin/album/delete'], { queryParams: { message: 'success' } });
         }
       );
-  }
-
-
+  }*/
 
 }

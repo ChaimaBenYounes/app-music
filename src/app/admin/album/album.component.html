@@ -1,4 +1,7 @@
-<a class="btn btn-info" routerLink="add" > Ajouter Album </a>
+<a class="btn btn-info float-right" routerLink="add" > Ajouter Album </a>
+<p>
+    <button class="btn btn-dark">Nombre d'album(s) : {{ count | async }}</button>
+</p>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -29,9 +32,15 @@
         <td>{{album.url}}</td>
         <td>{{album.like}}</td>
         <td>{{album.tags}}</td> 
-        <td><button type="button" data-toggle="modal" data-target="#myModal" (click)="deleteAlbum(album.id)" class="btn btn-danger">Delete</button></td> 
+        <td><button type="button" (click)="deleteAlbum(album.id)" class="btn btn-danger">Delete</button></td> 
       </tr>
     </tbody>
   </table>
   <app-paginate (setPaginate)="paginate($event)"></app-paginate>
+
+  <app-modal-dialog [showModal]="showModal" (choice)="choice($event)" >
+      <h2>Voulez-vous vraiment supprimer cet album ?</h2>
+      <button class="btn"  (click)="responseModalsNo()">Non</button>
+      <button class="btn btn-danger" (click)="responseModalsYes()">Oui</button>
+  </app-modal-dialog>
  
