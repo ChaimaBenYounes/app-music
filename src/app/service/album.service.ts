@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'; // Opérateurs de RxJS
 import * as _ from 'lodash'; // libraire utile pour le traitement de données
 import * as firebase from 'firebase/app';
-import { ReturnStatement } from '@angular/compiler';
 
 // définition des headers
 const httpOptions = {
@@ -142,8 +141,13 @@ export class AlbumService {
   }
 
   //add Album
-  addAlbum(album: Album): Observable<any> {
-    return this.http.post<void>(this.albumsUrl + '/.json', album);
+  addAlbum(album: Album, id: string): Observable<any> {
+    return this.http.put<void>(this.albumsUrl + `/${id}/.json`, album);
+  }
+
+  // id random
+  getRandomID():string{
+    return  Math.floor(Math.random()* Math.floor(1000)).toString();
   }
 
   //Update Album
@@ -164,5 +168,5 @@ export class AlbumService {
     const imagesRef = ref.child('images');
     return imagesRef.child(randomId + '.png').put(file);
   }
-
+  
 }

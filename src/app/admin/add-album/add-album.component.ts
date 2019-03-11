@@ -20,6 +20,7 @@ export class AddAlbumComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    console.log(this.albumService.getRandomID());
   }
 
   initForm() {
@@ -52,6 +53,7 @@ export class AddAlbumComponent implements OnInit {
   //OnSubmit Form
   onSubmit() {
     const formValue = this.albumForm.value;
+    const idRandom = this.albumService.getRandomID();
     let newAlbum : Album = {
       id : '',
       ref : formValue['ref'],
@@ -66,7 +68,7 @@ export class AddAlbumComponent implements OnInit {
     }
 
     //HttpClient Observable se désinscrit tout seul après avoir terminé son action
-    this.albumService.addAlbum(newAlbum).subscribe(
+    this.albumService.addAlbum(newAlbum, idRandom).subscribe(
       a => {
         if (this.selectedImage != null) {
           a.name || 'anonymous';
@@ -78,7 +80,7 @@ export class AddAlbumComponent implements OnInit {
             )
             .then(url => {
               newAlbum.url = url;
-              this.albumService.updateAlbum(a.name as string, newAlbum).subscribe(
+              this.albumService.updateAlbum(idRandom, newAlbum).subscribe(
                 () => {
                   console.log('updated with url image')
                 }
