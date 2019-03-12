@@ -23,7 +23,7 @@ export class AlbumService {
   // convention dans l'API ajoutez votre identifant de base de données
   private albumsUrl = 'https://music-9a476.firebaseio.com/albums';
   private albumListsUrl = 'https://music-9a476.firebaseio.com/albumLists';
-
+  countBis: number;
   private httpClientGetAlbums = this.http.get<Album[]>(this.albumsUrl+'/.json', httpOptions);
   
   sendCurrentNumberPage = new Subject<number>(); // pour mettre à jour la pagination 
@@ -36,6 +36,16 @@ export class AlbumService {
 
     // Vous devez faire le mapping avant la récupération des données
     return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(
+      map(albums => {
+        let newAlbums = [];
+        console.log(albums);
+        albums.forEach(album => {
+          if(album !== null) {
+            newAlbums.push(album);
+          }
+        })
+      return newAlbums;
+      }),
       // Préparation des données pour avoir un format exploitable dans l'application
       // JSON en Array JSON
       map(albums => {
@@ -65,8 +75,8 @@ export class AlbumService {
   }
 
   //count album
-  count():Observable<number>{
-    return this.httpClientGetAlbums.pipe(
+  count(){
+     return this.httpClientGetAlbums.pipe(
         map(album => {
           return album.length;
         }),
@@ -78,7 +88,15 @@ export class AlbumService {
 
     return this.httpClientGetAlbums.pipe(
           // Préparation des données avec _.values pour avoir un format exploitable dans l'app
-          map(albums => _.values(albums)),
+          map(albums => {
+            let newAlbums = [];
+            albums.forEach(album => {
+              if(album !== null) {
+                newAlbums.push(album);
+              }
+            })
+          return newAlbums;
+          }),
           // Ordonnez les albums par ordre de durées décroissantes
           map(albums => {
             return albums.sort(
