@@ -1,12 +1,13 @@
 <a class="btn btn-info float-right" routerLink="add" > Ajouter Album </a>
 <p>
-    <button class="btn btn-dark">Nombre d'album(s) : {{ count | async }}</button>
+  <button class="btn btn-dark">Nombre d'album(s) : {{ count | async }}</button>
 </p>
 <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Update</th>
+        <th scope="col">Image</th>
         <th scope="col">ref</th>
         <th scope="col">name</th>
         <th scope="col">title</th>
@@ -22,7 +23,11 @@
     <tbody>
       <tr *ngFor="let album of albums">
         <td scope="row">{{album.id}}</td>
-        <td><button type="button" class="btn btn-primary">Update</button></td>
+        <td>
+          <button routerLink="/admin/update/{{album.id}}"
+           type="button" class="btn btn-primary">Update</button>
+        </td>
+        <td><img *ngIf="album.url" class="card-img-top" src="{{album.url}}{{album.name}}" alt="Group Music"></td>
         <td>{{album.ref}}</td>
         <td>{{album.name}}</td>
         <td>{{album.title}}</td>
@@ -32,7 +37,10 @@
         <td>{{album.url}}</td>
         <td>{{album.like}}</td>
         <td>{{album.tags}}</td> 
-        <td><button type="button" (click)="deleteAlbum(album.id)" class="btn btn-danger">Delete</button></td> 
+        <td>
+          <button type="button" (click)="deleteAlbum(album.id)"
+           class="btn btn-danger">Delete</button>
+        </td> 
       </tr>
     </tbody>
   </table>

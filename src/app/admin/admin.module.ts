@@ -7,11 +7,13 @@ import { AddAlbumComponent  } from './add-album/add-album.component';
 import { GuardService } from './../service/guard.service';
 import { DeleteAlbumComponent } from './delete-album/delete-album.component';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { UpdateAlbumComponent } from './update-album/update-album.component';
 
 const routes: Routes = [
   { path:'admin/album', canActivate: [GuardService], component : AlbumComponent},
   { path:'admin/album/add', canActivate: [GuardService], component : AddAlbumComponent },
   { path: 'admin/delete/:id/:action',/*canActivate: [GuardService],*/ component: DeleteAlbumComponent },
+  { path: 'admin/update/:id', /*canActivate: [GuardService],*/ component: UpdateAlbumComponent },
 ]
 @NgModule({
     declarations: [
@@ -19,6 +21,7 @@ const routes: Routes = [
         AddAlbumComponent,
         DeleteAlbumComponent,
         ModalDialogComponent,
+        UpdateAlbumComponent,
     ], 
     imports: [
         CommonModule, // directives classiques à importer dans le module

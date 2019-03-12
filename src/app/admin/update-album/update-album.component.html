@@ -1,0 +1,99 @@
+<form class="row" [formGroup]="updateFormAlbum" (ngSubmit)="onSubmit()">
+    <!-- ref -->
+    <div class="form-group col-md-4">
+        <label for="ref">ref</label>
+        <input formControlName="ref" type="text" class="form-control" id="ref" placeholder="ref">
+        <div *ngIf="ref.invalid && ref.touched" class="alert alert-danger">
+          <div *ngIf="ref.errors.required">
+            ref is required
+          </div>
+          <div *ngIf="ref.errors.pattern">
+              Name must be at least 5 characters long.
+          </div>
+        </div>
+    </div>
+    <!-- name -->
+    <div class="form-group col-md-8">
+        <label for="name">Name :</label>
+        <input formControlName="name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter artist name">
+        <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+          <div *ngIf="name.errors.required">
+            Name is required
+          </div>
+          <div *ngIf="name.errors.minlength">
+            Name must be at least 5 characters long.
+          </div>
+        </div>
+    </div>
+     <!-- title -->
+    <div class="form-group col-md-12">
+        <label for="title">title</label>
+        <input formControlName="title" type="title" class="form-control" id="title" placeholder="title">
+        <div *ngIf="title.invalid && title.touched" class="alert alert-danger">
+            <div *ngIf="title.errors.required">
+              Name is required
+            </div>
+            <div *ngIf="title.errors.minlength">
+              Name must be at least 5 characters long.
+            </div>
+        </div>
+      </div>
+      <!--file -->
+      <div class="form-group col-md-4">
+          <label for="image">Upload new file </label><br>
+          <input (change)="onSelectedImage($event)" type="file" class="btn" id="image">
+      </div>
+      <!--image -->
+      <div class="form-group col-md-12">    
+          <img class="card-img-top" style="width:100px; height:100px;" src="{{urlImage}}" alt="Group Music">
+      </div>
+    
+    <!-- duration -->
+    <div class="form-group col-md-12">
+      <label for="duration">duration</label>
+      <input formControlName="duration" type="duration" class="form-control" id="duration" placeholder="duration seconde(s)">
+      <div *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="alert alert-danger">
+        <div *ngIf="duration.errors.required">
+          Duration is required
+        </div>
+        <div *ngIf="duration.errors.pattern">
+          Duration must be a numeric value.
+        </div>
+        <div *ngIf="duration.errors.max">
+          Max 900
+        </div>
+      </div>
+    </div>
+    <!-- description -->
+    <div class="form-group col-md-12">
+      <label for="description">Description</label>
+      <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+      <div *ngIf="description.invalid && description.touched" class="alert alert-danger">
+          <div *ngIf="description.errors.required">
+            Name is required
+          </div>
+          <div *ngIf="description.errors.minlength">
+            Name must be at least 10 characters long.
+          </div>
+      </div>   
+    </div>
+    <!-- status -->
+    <div class="form-group col-md-12">
+        <label for="name">status :</label>
+        <input formControlName="status" type="text" class="form-control"
+        id="status" aria-describedby="statusHelp" placeholder="Enter Album status">
+    </div>    
+        <!-- like -->
+    <div class="form-group col-md-12">
+        <label for="like">like :</label>
+        <input formControlName="like" type="text" class="form-control"
+        id="like" aria-describedby="likeHelp" placeholder="Enter Album like">
+    </div>    
+        <!-- tags -->
+    <div class="form-group col-md-12">
+        <label for="tags">tags :</label>
+        <input formControlName="tags" type="text" class="form-control"
+        id="tags" aria-describedby="tagsHelp" placeholder="Enter Album tags">
+    </div>
+    <button [disabled]="updateFormAlbum.invalid" type="submit" class="btn btn-primary">Add</button>
+</form>

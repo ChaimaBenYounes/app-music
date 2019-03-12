@@ -20,18 +20,30 @@ export class AddAlbumComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    console.log(this.albumService.getRandomID());
   }
 
   initForm() {
       this.albumForm =  this.formBuilder.group({
-        ref : new FormControl('', [Validators.required, Validators.minLength(5)]),
-        name : new FormControl('', [Validators.required, Validators.minLength(5)]),
-        title : new FormControl('', [Validators.required, Validators.minLength(5)]),
-        description : new FormControl('', [Validators.required, Validators.minLength(10)]),
-        duration : new FormControl('', [Validators.required,
-                                        Validators.pattern('[0-9]*'),
-                                        Validators.max(900)
+        ref : new FormControl('', [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        name : new FormControl('', [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        title : new FormControl('', [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        description : new FormControl('', [
+          Validators.required,
+          Validators.minLength(10)
+        ]),
+        duration : new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]*'),
+          Validators.max(900)
         ]),
         status : new FormControl('off', []),
         like : new FormControl('', []),

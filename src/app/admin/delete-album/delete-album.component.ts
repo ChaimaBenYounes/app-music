@@ -23,7 +23,7 @@ export class DeleteAlbumComponent implements OnInit {
 
       this.AlbumService.deleteAlbum(id).subscribe(
         () => {
-          this.router.navigate(['/admin/album']);
+          this.router.navigate(['/admin/d']);
         }
       )
     }
